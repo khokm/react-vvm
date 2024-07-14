@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment,@typescript-eslint/no-use-before-define,no-self-assign */
-import { autorun, makeObservable, reaction } from 'mobx';
+import { autorun, makeObservable, reaction } from "mobx";
 
 type TDisposer = () => void;
 
 /** A base class for view models */
-export abstract class ViewModel<V extends ViewModel | null | unknown = unknown, P = unknown> {
+export abstract class ViewModel<
+  V extends ViewModel | null | unknown = unknown,
+  P = unknown
+> {
   /** An array of disposers which are called after the view becomes unmounted */
   // @ts-ignore
   private d: TDisposer[];
@@ -78,7 +81,7 @@ export abstract class ViewModel<V extends ViewModel | null | unknown = unknown, 
 }
 
 // You may think that all the code below is a crutch. But it's actually not. All these lines are needed for
-// optimisations.
+// optimizations.
 //
 // For example, you may ask why do reaction and autorun declared in this way. Well, these functions are add-on
 // functions, which means they should have the same type as their alternatives from MobX. And it's actually a problem.
@@ -94,6 +97,6 @@ export abstract class ViewModel<V extends ViewModel | null | unknown = unknown, 
 export const PROTOTYPE = ViewModel.prototype as any,
   OBJECT = Object,
   ASSIGN = OBJECT.assign,
-  PARENT = 'parent' as const,
-  VIEW_PROPS = 'viewProps' as const,
-  REFLECT = Reflect as any;
+  PARENT = "parent" as const,
+  VIEW_PROPS = "viewProps" as const;
+// REFLECT = Reflect as any;
